@@ -44,16 +44,16 @@ list_modules() {
     echo "Available modules:"
     echo ""
     echo "📦 Skills - Languages:"
-    ls -1 "$ROOT_DIR/skills/languages/" 2>/dev/null | sed 's/.md$//' | sed 's/^/  languages\//'
+    ls -1 "$ROOT_DIR/languages/" 2>/dev/null | sed 's/.md$//' | sed 's/^/  languages\//'
     echo ""
     echo "📦 Skills - Frameworks:"
-    ls -1 "$ROOT_DIR/skills/frameworks/" 2>/dev/null | sed 's/.md$//' | sed 's/^/  frameworks\//'
+    ls -1 "$ROOT_DIR/frameworks/" 2>/dev/null | sed 's/.md$//' | sed 's/^/  frameworks\//'
     echo ""
     echo "📦 Skills - Infra:"
     ls -1 "$ROOT_DIR/skills/infra/" 2>/dev/null | sed 's/.md$//' | sed 's/^/  infra\//'
     echo ""
     echo "📦 Skills - Practices:"
-    ls -1 "$ROOT_DIR/skills/practices/" 2>/dev/null | sed 's/.md$//' | sed 's/^/  practices\//'
+    ls -1 "$ROOT_DIR/practices/" 2>/dev/null | sed 's/.md$//' | sed 's/^/  practices\//'
     echo ""
     echo "🤖 Agents:"
     ls -1 "$ROOT_DIR/agents/" 2>/dev/null | sed 's/.md$//' | sed 's/^/  agents\//'

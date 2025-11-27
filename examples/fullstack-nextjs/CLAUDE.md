@@ -2,9 +2,9 @@
 
 이 문서는 다음 모듈의 조합입니다:
 - base/CLAUDE.md
-- skills/languages/typescript.md
-- skills/frameworks/nextjs.md
-- skills/practices/testing.md
+- languages/typescript.md
+- frameworks/nextjs.md
+- practices/testing.md
 
 ---
 

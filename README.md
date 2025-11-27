@@ -59,16 +59,16 @@ ln -s ~/claude-code-handbook/examples/fullstack-nextjs/CLAUDE.md ~/my-project/CL
 ### Skills - Languages
 | 파일 | 설명 |
 |------|------|
-| `skills/languages/typescript.md` | TypeScript 모범 사례 |
-| `skills/languages/python.md` | Python 스타일 가이드 |
-| `skills/languages/go.md` | Go 언어 컨벤션 |
+| `languages/typescript.md` | TypeScript 모범 사례 |
+| `languages/python.md` | Python 스타일 가이드 |
+| `languages/go.md` | Go 언어 컨벤션 |
 
 ### Skills - Frameworks
 | 파일 | 설명 |
 |------|------|
-| `skills/frameworks/nextjs.md` | Next.js App Router 패턴 |
-| `skills/frameworks/fastapi.md` | FastAPI 구조화 가이드 |
-| `skills/frameworks/express.md` | Express.js 패턴 |
+| `frameworks/nextjs.md` | Next.js App Router 패턴 |
+| `frameworks/fastapi.md` | FastAPI 구조화 가이드 |
+| `frameworks/express.md` | Express.js 패턴 |
 
 ### Skills - Infra
 | 파일 | 설명 |
@@ -81,9 +81,9 @@ ln -s ~/claude-code-handbook/examples/fullstack-nextjs/CLAUDE.md ~/my-project/CL
 ### Skills - Practices
 | 파일 | 설명 |
 |------|------|
-| `skills/practices/testing.md` | 테스트 전략 |
-| `skills/practices/security.md` | 보안 체크리스트 |
-| `skills/practices/performance.md` | 성능 최적화 |
+| `practices/testing.md` | 테스트 전략 |
+| `practices/security.md` | 보안 체크리스트 |
+| `practices/performance.md` | 성능 최적화 |
 
 ### Agents
 | 파일 | 설명 |
