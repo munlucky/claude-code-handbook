@@ -56,21 +56,21 @@ ln -s ~/claude-code-handbook/examples/fullstack-nextjs/CLAUDE.md ~/my-project/CL
 | `base/CLAUDE.md` | 코딩 스타일, 커뮤니케이션 기본 규칙 |
 | `base/conventions.md` | 네이밍, 포맷팅 컨벤션 |
 
-### Skills - Languages
+### Languages
 | 파일 | 설명 |
 |------|------|
 | `languages/typescript.md` | TypeScript 모범 사례 |
 | `languages/python.md` | Python 스타일 가이드 |
 | `languages/go.md` | Go 언어 컨벤션 |
 
-### Skills - Frameworks
+### Frameworks
 | 파일 | 설명 |
 |------|------|
 | `frameworks/nextjs.md` | Next.js App Router 패턴 |
 | `frameworks/fastapi.md` | FastAPI 구조화 가이드 |
 | `frameworks/express.md` | Express.js 패턴 |
 
-### Skills - Infra
+### Infra
 | 파일 | 설명 |
 |------|------|
 | `skills/infra/kubernetes.md` | K8s 매니페스트 작성 |
@@ -78,7 +78,7 @@ ln -s ~/claude-code-handbook/examples/fullstack-nextjs/CLAUDE.md ~/my-project/CL
 | `skills/infra/docker.md` | Dockerfile 최적화 |
 | `skills/infra/terraform.md` | Terraform 모듈 작성 |
 
-### Skills - Practices
+### Practices
 | 파일 | 설명 |
 |------|------|
 | `practices/testing.md` | 테스트 전략 |
