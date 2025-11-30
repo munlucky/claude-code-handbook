@@ -95,6 +95,10 @@ router.post('/', validate(createUserSchema), controller.create);
 router.put('/:id', auth, validate(updateUserSchema), controller.update);
 router.delete('/:id', auth, controller.delete);
 
+// 비동기 에러 자동 전파 예시
+// import asyncHandler from 'express-async-handler';
+// router.get('/', asyncHandler(controller.list));
+
 export default router;
 ```
 

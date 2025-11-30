@@ -34,6 +34,17 @@ def first(items: Sequence[T]) -> T:
     return items[0]
 ```
 
+## Environment & Packaging
+- 가상환경: `python -m venv .venv && source .venv/bin/activate`
+- pyproject 기반
+  - uv: `uv pip install -r requirements.txt`
+  - pip-tools: `pip-compile pyproject.toml && pip-sync`
+
+## Async/Concurrency 주의
+- 이벤트 루프에서 블로킹 I/O 금지 → `asyncio.to_thread`/전용 스레드 풀 사용
+- `asyncio.wait_for`로 타임아웃 감싸기, `gather(..., return_exceptions=True)`로 부분 실패 처리
+- Linux이면 `uvloop.install()`로 성능 개선 가능(테스트 후 적용)
+
 ## Dataclasses & Pydantic
 
 ```python

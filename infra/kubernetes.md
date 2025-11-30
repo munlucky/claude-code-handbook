@@ -191,6 +191,35 @@ spec:
           averageUtilization: 80
 ```
 
+## PodDisruptionBudget & Topology Spread
+
+```yaml
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata:
+  name: my-app
+spec:
+  minAvailable: 2
+  selector:
+    matchLabels:
+      app: my-app
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-app
+spec:
+  template:
+    spec:
+      topologySpreadConstraints:
+        - maxSkew: 1
+          topologyKey: topology.kubernetes.io/zone
+          whenUnsatisfiable: DoNotSchedule
+          labelSelector:
+            matchLabels:
+              app: my-app
+```
+
 ## ServiceAccount & RBAC
 
 ```yaml

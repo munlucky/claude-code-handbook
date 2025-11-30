@@ -142,6 +142,27 @@ func fetchWithTimeout(ctx context.Context, url string) (*Response, error) {
 }
 ```
 
+## Context 규칙
+- 외부 호출/DB 접근 함수의 첫 인자는 `ctx context.Context`
+- `context.Background()`는 초기화/테스트에서만, 나머지는 상위에서 내려 받은 ctx 사용
+- 타임아웃/캔슬 가능한 ctx를 main에서 생성해 전파
+
+## Lint/Format
+
+```yaml
+# .golangci.yml 예시
+run:
+  timeout: 3m
+linters:
+  enable:
+    - govet
+    - staticcheck
+    - revive
+    - errcheck
+issues:
+  exclude-use-default: false
+```
+
 ## Project Structure
 
 ```

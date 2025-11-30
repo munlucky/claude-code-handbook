@@ -85,6 +85,7 @@ async function upload(key: string, body: Buffer) {
     Key: key,
     Body: body,
     ContentType: 'application/octet-stream',
+    ServerSideEncryption: 'AES256',
   }));
 }
 
@@ -93,10 +94,15 @@ async function getUploadUrl(key: string): Promise<string> {
   const command = new PutObjectCommand({
     Bucket: 'my-bucket',
     Key: key,
+    ContentType: 'application/octet-stream',
   });
-  return getSignedUrl(s3, command, { expiresIn: 3600 });
+  return getSignedUrl(s3, command, { expiresIn: 3600 }); // 만료시간 1시간
 }
 ```
+
+- S3 버킷 정책: Origin/Presigned URL에 필요한 리소스만 허용, 퍼블릭 액세스 차단
+- 업로드 시 Content-Type을 명시하고 서버사이드 암호화(AES256/KMS) 사용
+- Presigned URL 만료 시간을 짧게 유지하고 필요시 키(prefix)별 제한
 
 ## CloudFront + S3
 

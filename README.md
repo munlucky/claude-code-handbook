@@ -7,14 +7,14 @@ Claude Code에서 사용할 수 있는 재사용 가능한 지침(instructions),
 ```
 claude-code-handbook/
 ├── base/                 # 기본 지침 (항상 적용 권장)
-├── skills/               # 재사용 가능한 기술 모듈
-│   ├── languages/        # 프로그래밍 언어별
-│   ├── frameworks/       # 프레임워크별
-│   ├── infra/            # 인프라/DevOps
-│   └── practices/        # 개발 프랙티스
+├── languages/            # 프로그래밍 언어별
+├── frameworks/           # 프레임워크별
+├── infra/                # 인프라/DevOps
+├── practices/            # 개발 프랙티스
 ├── agents/               # 특정 작업 수행용 에이전트 지침
 ├── prompts/              # 자주 쓰는 프롬프트 스니펫
 ├── examples/             # 조합 예시
+├── skills/               # 보조 스킬 모듈(SKILL)
 └── scripts/              # 유틸리티 스크립트
 ```
 
@@ -73,10 +73,10 @@ ln -s ~/claude-code-handbook/examples/fullstack-nextjs/CLAUDE.md ~/my-project/CL
 ### Infra
 | 파일 | 설명 |
 |------|------|
-| `skills/infra/kubernetes.md` | K8s 매니페스트 작성 |
-| `skills/infra/aws.md` | AWS 서비스 패턴 |
-| `skills/infra/docker.md` | Dockerfile 최적화 |
-| `skills/infra/terraform.md` | Terraform 모듈 작성 |
+| `infra/kubernetes.md` | K8s 매니페스트 작성 |
+| `infra/aws.md` | AWS 서비스 패턴 |
+| `infra/docker.md` | Dockerfile 최적화 |
+| `infra/terraform.md` | Terraform 모듈 작성 |
 
 ### Practices
 | 파일 | 설명 |

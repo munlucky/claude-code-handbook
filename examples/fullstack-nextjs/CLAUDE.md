@@ -86,7 +86,8 @@ export async function POST(request: NextRequest) {
 
 - Unit: 비즈니스 로직
 - Integration: API routes
-- E2E: 핵심 사용자 흐름
+- E2E: 핵심 사용자 흐름 (Playwright 권장, 이미 Cypress가 있으면 유지 후 점진 전환)
+- E2E 선택 가이드: 멀티브라우저/비주얼 회귀 필요 → Playwright, 기존 Cypress 자산 재사용 필요 → Cypress 유지, 신규면 Playwright 기본
 
 ```typescript
 // __tests__/api/users.test.ts

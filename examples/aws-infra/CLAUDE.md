@@ -2,10 +2,10 @@
 
 이 문서는 다음 모듈의 조합입니다:
 - base/CLAUDE.md
-- skills/infra/aws.md
-- skills/infra/kubernetes.md
-- skills/infra/terraform.md
-- skills/infra/docker.md
+- infra/aws.md
+- infra/kubernetes.md
+- infra/terraform.md
+- infra/docker.md
 
 ---
 

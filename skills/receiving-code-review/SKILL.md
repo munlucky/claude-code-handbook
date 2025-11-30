@@ -110,6 +110,12 @@ FOR multi-item feedback:
   4. Verify no regressions
 ```
 
+## 빠른 확인 명령 예시
+- JavaScript/TypeScript: `pnpm test`, `pnpm lint`, `pnpm typecheck`
+- Python: `pytest`, `ruff check .`
+- Go: `go test ./...`
+- 사용 여부 확인: `rg "<심볼|파일명>"`
+
 ## When To Push Back
 
 Push back when:

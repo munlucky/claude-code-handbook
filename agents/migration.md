@@ -30,6 +30,10 @@ enum Role {
 // prisma/migrations/xxx_add_user_role/migration.sql
 -- 기존 사용자에게 기본 role 할당
 UPDATE "User" SET "role" = 'USER' WHERE "role" IS NULL;
+
+-- 검증 예시: 마이그레이션 전후 카운트 비교
+SELECT COUNT(*) FROM "User";         -- before
+SELECT role, COUNT(*) FROM "User" GROUP BY role;  -- after
 ```
 
 ### Breaking Change Migration

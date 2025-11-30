@@ -71,6 +71,7 @@ fetch(url, { next: { revalidate: 60 } }); // 60초 후 재검증
 
 async function createUser(formData: FormData) {
   const name = formData.get('name');
+  // 입력 값 검증 및 권한 체크 후 사용
   await db.users.create({ data: { name } });
   revalidatePath('/users');
 }
@@ -121,6 +122,8 @@ export async function GET(
   return NextResponse.json(user);
 }
 ```
+
+- 캐싱 제어: `export const revalidate = 60`(ISR), `export const revalidate = 0` 혹은 `export const dynamic = 'force-dynamic'`(실시간)
 
 ### Middleware
 

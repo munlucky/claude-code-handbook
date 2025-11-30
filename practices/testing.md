@@ -210,6 +210,12 @@ test.describe('User Authentication', () => {
 
 ## 테스트 작성 가이드
 
+### 결정론적 테스트 만들기
+- 시간: `jest.useFakeTimers(); jest.setSystemTime(new Date('2024-01-01'))`
+- 랜덤: `seedrandom('test');` 혹은 고정 seed를 주입
+- 네트워크/외부 API: record-replay(VCR/Mock Service Worker)로 격리
+- DB: 각 테스트를 트랜잭션으로 감싸고 `BEGIN` → 테스트 → `ROLLBACK`
+
 ### 무엇을 테스트할까
 
 - 비즈니스 로직 (계산, 검증, 변환)

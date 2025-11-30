@@ -21,6 +21,11 @@
 - 단순 getter/setter
 - 타입 정의
 
+### 결정론 유지
+- 시간: fake timers로 고정(`jest.useFakeTimers(); jest.setSystemTime(...)`)
+- 랜덤: seed 주입 또는 고정값 사용
+- 외부 API: record/replay(예: MSW/Polly)나 계약 테스트로 네트워크 격리
+
 ## Unit Test Template
 
 ```typescript

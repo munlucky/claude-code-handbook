@@ -130,7 +130,6 @@ app.use(helmet());
 app.use((req, res, next) => {
   res.setHeader('X-Content-Type-Options', 'nosniff');
   res.setHeader('X-Frame-Options', 'DENY');
-  res.setHeader('X-XSS-Protection', '1; mode=block');
   res.setHeader('Strict-Transport-Security', 'max-age=31536000; includeSubDomains');
   res.setHeader('Content-Security-Policy', "default-src 'self'");
   next();
@@ -154,6 +153,10 @@ app.use(cors({
   maxAge: 86400, // preflight 캐시 24시간
 }));
 ```
+
+## CSRF/SSRF 방어
+- CSRF: SameSite=Lax/Strict 쿠키, CSRF 토큰(Double Submit), OAuth는 state 파라미터 사용
+- SSRF: 아웃바운드 대상 allowlist, 프록시 사용, 메타데이터 IP(169.254.169.254) 및 file:// 차단
 
 ## Rate Limiting
 
@@ -223,11 +226,14 @@ logger.info('User login', { email: user.email, ip: req.ip });
 - [ ] JWT 만료 시간 설정
 - [ ] Refresh token rotation
 - [ ] 권한 검사 (authorization)
+- [ ] 비공개 엔드포인트에 인증/인가 강제
 
 ### 입력 검증
 - [ ] 모든 입력값 검증/sanitize
 - [ ] SQL injection 방지 (parameterized query)
 - [ ] XSS 방지 (output encoding)
+- [ ] CSRF 보호 (SameSite/토큰)
+- [ ] SSRF 방지 (아웃바운드 allowlist)
 
 ### 통신
 - [ ] HTTPS 강제

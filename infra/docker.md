@@ -117,6 +117,8 @@ docker-compose*
 !README.md
 ```
 
+- 문서가 빌드에 필요하면 화이트리스트 추가: 예) `!docs/**/*.md`
+
 ## Docker Compose
 
 ```yaml

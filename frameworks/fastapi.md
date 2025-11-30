@@ -148,10 +148,11 @@ security = HTTPBearer()
 
 async def get_db() -> AsyncSession:
     async with async_session() as session:
-        try:
-            yield session
-        finally:
-            await session.close()
+        async with session.begin():  # 트랜잭션 보장
+            try:
+                yield session
+            finally:
+                await session.close()
 
 async def get_current_user(
     credentials: HTTPAuthorizationCredentials = Depends(security),
@@ -164,7 +165,12 @@ async def get_current_user(
             status_code=status.HTTP_401_UNAUTHORIZED,
             detail="Invalid token",
         )
-    # fetch user from db
+    result = await db.execute(
+        select(User).where(User.id == payload["sub"])
+    )
+    user = result.scalar_one_or_none()
+    if not user:
+        raise HTTPException(status_code=401, detail="User not found")
     return user
 ```
 

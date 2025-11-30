@@ -43,20 +43,24 @@ print_usage() {
 list_modules() {
     echo "Available modules:"
     echo ""
-    echo "📦 Skills - Languages:"
+    echo "📦 Languages:"
     ls -1 "$ROOT_DIR/languages/" 2>/dev/null | sed 's/.md$//' | sed 's/^/  languages\//'
     echo ""
-    echo "📦 Skills - Frameworks:"
+    echo "📦 Frameworks:"
     ls -1 "$ROOT_DIR/frameworks/" 2>/dev/null | sed 's/.md$//' | sed 's/^/  frameworks\//'
     echo ""
-    echo "📦 Skills - Infra:"
-    ls -1 "$ROOT_DIR/skills/infra/" 2>/dev/null | sed 's/.md$//' | sed 's/^/  infra\//'
+    echo "📦 Infra:"
+    ls -1 "$ROOT_DIR/infra/" 2>/dev/null | sed 's/.md$//' | sed 's/^/  infra\//'
     echo ""
-    echo "📦 Skills - Practices:"
+    echo "📦 Practices:"
     ls -1 "$ROOT_DIR/practices/" 2>/dev/null | sed 's/.md$//' | sed 's/^/  practices\//'
     echo ""
     echo "🤖 Agents:"
     ls -1 "$ROOT_DIR/agents/" 2>/dev/null | sed 's/.md$//' | sed 's/^/  agents\//'
+    echo ""
+    echo "🧰 Skills:"
+    find "$ROOT_DIR/skills" -maxdepth 2 -type f -name "*.md" 2>/dev/null \
+      | sed "s#$ROOT_DIR/##" | sed 's/.md$//'
 }
 
 resolve_module_path() {
@@ -65,29 +69,29 @@ resolve_module_path() {
     
     # .md 확장자 제거 (있으면)
     module="${module%.md}"
-    
-    # 전체 경로로 변환
+
+    # 전체 경로로 변환 (루트 기준)
     if [[ "$module" == languages/* ]] || [[ "$module" == frameworks/* ]] || \
-       [[ "$module" == infra/* ]] || [[ "$module" == practices/* ]]; then
-        path="$ROOT_DIR/skills/$module.md"
-    elif [[ "$module" == agents/* ]]; then
-        path="$ROOT_DIR/$module.md"
-    elif [[ "$module" == skills/* ]]; then
+       [[ "$module" == infra/* ]] || [[ "$module" == practices/* ]] || \
+       [[ "$module" == agents/* ]] || [[ "$module" == skills/* ]]; then
         path="$ROOT_DIR/$module.md"
     else
         # 짧은 형식 시도 (예: typescript -> languages/typescript)
-        for dir in languages frameworks infra practices; do
-            if [[ -f "$ROOT_DIR/skills/$dir/$module.md" ]]; then
-                path="$ROOT_DIR/skills/$dir/$module.md"
+        for dir in languages frameworks infra practices agents; do
+            if [[ -f "$ROOT_DIR/$dir/$module.md" ]]; then
+                path="$ROOT_DIR/$dir/$module.md"
                 break
             fi
         done
-        # agents에서도 찾기
-        if [[ -z "$path" ]] && [[ -f "$ROOT_DIR/agents/$module.md" ]]; then
-            path="$ROOT_DIR/agents/$module.md"
+        # skills 하위에서 찾기
+        if [[ -z "$path" ]]; then
+            found_skill=$(find "$ROOT_DIR/skills" -maxdepth 2 -type f -name "${module}.md" | head -n 1)
+            if [[ -n "$found_skill" ]]; then
+                path="$found_skill"
+            fi
         fi
     fi
-    
+
     echo "$path"
 }
 
@@ -163,7 +167,7 @@ for module in "${MODULES[@]}"; do
     if [[ -z "$path" ]] || [[ ! -f "$path" ]]; then
         echo -e "${RED}✗${NC} Not found: $module"
         echo -e "  Use ${YELLOW}$0 --list${NC} to see available modules"
-        continue
+        exit 1
     fi
     
     echo -e "${GREEN}✓${NC} Adding: $module"

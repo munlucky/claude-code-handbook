@@ -123,3 +123,23 @@ const name = user.name ?? 'Anonymous';
 // Non-null assertion (확실할 때만)
 const element = document.getElementById('app')!;
 ```
+
+## tsconfig 핵심 옵션 예시
+
+```json
+{
+  "compilerOptions": {
+    "strict": true,
+    "noImplicitAny": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "moduleResolution": "bundler",
+    "skipLibCheck": true,
+    "incremental": true
+  }
+}
+```
+
+## Lint/Format 워크플로우
+- ESLint: `pnpm lint` (CI에서는 `--max-warnings=0` 권장)
+- Prettier: `pnpm format` 또는 `npx prettier "src/**/*.{ts,tsx}" --check`

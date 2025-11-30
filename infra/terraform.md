@@ -279,6 +279,7 @@ terraform destroy -target=aws_instance.example
 # 포맷 & 검증
 terraform fmt -recursive
 terraform validate
+tflint --recursive
 
 # Import (기존 리소스)
 terraform import aws_vpc.main vpc-12345678

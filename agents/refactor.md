@@ -17,6 +17,16 @@
 - 리팩토링 전 테스트 커버리지 확인
 - 테스트 없으면 먼저 테스트 추가
 
+```typescript
+// 테스트가 없을 때 최소 스텁 예시 (Jest)
+describe('MyService', () => {
+  it('should keep behavior', () => {
+    // TODO: 현재 동작 검증 코드 추가
+    expect(true).toBe(true);
+  });
+});
+```
+
 ## Common Refactoring Patterns
 
 ### Extract Function

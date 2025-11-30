@@ -210,6 +210,13 @@ const [user, orders, reviews] = await Promise.all([
 ]);
 ```
 
+## 측정과 성능 예산
+- 변경 전후 p50/p95/p99, 오류율을 APM/로그로 측정 (예: Datadog, New Relic)
+- 프론트: Lighthouse로 LCP/FID/CLS, 번들 크기 측정
+- 서버/API: 응답 시간/쿼리 시간/CPU/메모리/GC 지표 수집
+- 성능 예산 예시: LCP < 2.5s, JS 번들 < 250KB(gzip), API p95 < 300ms
+- 카나리/점진 배포로 개선 여부 검증 후 전체 반영
+
 ## Monitoring
 
 ### 핵심 메트릭

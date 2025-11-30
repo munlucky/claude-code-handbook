@@ -36,6 +36,24 @@
 
 각 그룹 사이 빈 줄
 
+```typescript
+// 외부
+import express from 'express';
+
+// 내부 절대
+import { db } from '@/lib/db';
+
+// 상대
+import { formatUser } from '../formatUser';
+
+// 타입
+import type { Request, Response } from 'express';
+```
+
+### Formatter/Linter 기본 명령
+- JavaScript/TypeScript: `pnpm lint` (ESLint) → `pnpm format` (Prettier)
+- Python: `ruff check .` → `ruff format .` 또는 `black .`
+
 ## Documentation
 
 ### 주석

@@ -4,6 +4,19 @@
 
 ## Error Troubleshooting
 
+### 로그/메트릭 첨부 템플릿
+```
+로그:
+- [timestamp] [level] message
+- ...
+
+메트릭 스냅샷 (필요시):
+- CPU: 
+- Memory:
+- p95 latency:
+- Error rate:
+```
+
 ### 기본 에러 해결
 ```
 이 에러를 해결해줘:

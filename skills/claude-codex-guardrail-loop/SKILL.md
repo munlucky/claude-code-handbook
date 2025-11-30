@@ -18,6 +18,11 @@ description: Use after planning or implementing non-trivial tasks - runs Codex M
 - 문서 업데이트만 수행한 경우
 - 1-2줄 간단한 수정 (오타, 스타일 조정)
 
+**MCP 도구가 없을 때:**
+- 동일한 Plan/Implementation/Review 포맷으로 수동 체크리스트 수행
+- 최소 실행: 빌드/테스트/린트/타입체크 명령을 직접 실행하거나 실행 계획을 남김
+- 치명적 이슈 여부를 수동 리뷰해 요약본으로 보고
+
 ## 역할 (Role)
 - 기본 역할은 `CLAUDE.md` 정의를 따른다. Codex는 계획·구현을 검증하는 리뷰어다.
 - 항상 마지막으로 정리한 에이전트가 이어받아 작업한다.
