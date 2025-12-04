@@ -7,8 +7,8 @@ description: Use after planning or implementing non-trivial tasks - runs Codex M
 
 ## 언제 사용하는가 (When to Use)
 
-**다음 작업 후 반드시 사용:**
-- 비 trivial한 계획 수립 후 (3단계 이상, 아키텍처 영향, 여러 파일 변경)
+**다음 작업 후 사용 권장 (Plan 검증은 요청 시/합의 시에만 실행):**
+- 비 trivial한 계획 수립 후 (3단계 이상, 아키텍처 영향, 여러 파일 변경) → Plan 검증은 사용자 합의/요청 시 진행
 - 코드 구현 완료 후 (새 기능, 리팩터링, API 변경)
 - 빌드/배포 전 최종 검증
 - 주요 작업 완료 후 품질 게이트 통과 확인
@@ -17,11 +17,6 @@ description: Use after planning or implementing non-trivial tasks - runs Codex M
 - 단순 설정 변경 (환경 변수, 포맷 설정 등)
 - 문서 업데이트만 수행한 경우
 - 1-2줄 간단한 수정 (오타, 스타일 조정)
-
-**MCP 도구가 없을 때:**
-- 동일한 Plan/Implementation/Review 포맷으로 수동 체크리스트 수행
-- 최소 실행: 빌드/테스트/린트/타입체크 명령을 직접 실행하거나 실행 계획을 남김
-- 치명적 이슈 여부를 수동 리뷰해 요약본으로 보고
 
 ## 역할 (Role)
 - 기본 역할은 `CLAUDE.md` 정의를 따른다. Codex는 계획·구현을 검증하는 리뷰어다.
@@ -66,7 +61,7 @@ description: Use after planning or implementing non-trivial tasks - runs Codex M
 
 ## Codex-Claude Loop 절차
 1. **계획(Claude)**: 상세 계획을 수립하고 `.claude/docs/tasks/context.md`에 기록한다.
-2. **계획 검증(Codex)**: MCP 도구로 백그라운드에서 검증을 요청한다.
+2. **계획 검증(Codex)** *(옵션)*: 사용자 요청/합의가 있을 때 MCP 도구로 백그라운드 검증을 요청한다.
    - `mcp__codex__spawn_agent` 도구 사용
    - 프롬프트 예시:
    ```
@@ -74,13 +69,13 @@ description: Use after planning or implementing non-trivial tasks - runs Codex M
    [Claude의 계획 내용]
 
    아래를 중점적으로 확인해:
-   - 논리 오류
-   - 빠진 엣지 케이스
-   - 아키텍처 문제(엔티티 패턴, BFF 패턴, API 라우트 프록시)
-   - Next.js 15 App Router 베스트프랙티스
-   - 타입 안전성(엔티티 → 프롭스, PagingResponse, fp-ts Either)
-   - 보안 이슈
-   - ReadLog 프로젝트 CLAUDE.md 규칙 준수
+   - 논리 오류 및 누락된 엣지 케이스
+   - 데이터/흐름 일관성, API 계약 위반 여부
+   - 타입 안전성(타입 좁히기, null/undefined 처리)과 에러 처리
+   - 성능/자원 낭비 가능성
+   - 보안/권한/입력 검증
+   - 프레임워크/언어 베스트프랙티스 준수 여부
+   - 프로젝트별 코드 컨벤션 및 레포 규칙 준수 여부 (CLAUDE.md 등)
 
    제약:
    - Plan/Implementation/Review 포맷 유지, 산출물은 요약본만
@@ -96,19 +91,13 @@ description: Use after planning or implementing non-trivial tasks - runs Codex M
    ```
    구현을 리뷰하고 아래를 확인해줘:
 
-   ReadLog 프로젝트 기준:
-   - Entity → Props 패턴 준수
-   - 타입 안전성(TypeScript strict 모드, 엔티티 타입)
-   - fp-ts Either/Option을 통한 에러 핸들링
-   - Zustand 상태 관리 패턴
-   - Next.js 15 App Router 베스트프랙티스
-   - API 프록시 패턴(getTokenHeader, fetchEitherWithHeaders)
-   - 성능 최적화(독서 경험 중심)
-   - Tailwind CSS 모바일 퍼스트
-
-   일반 품질:
-   - 버그 가능성
-   - 보안 취약점
+   - 논리/흐름 오류, 엣지 케이스 누락
+   - 타입 안전성 및 null/undefined 방어, 에러/예외 처리
+   - API 계약 및 데이터 모델 정합성
+   - 성능, 자원 낭비 가능성
+   - 보안/권한/입력 검증
+   - 프레임워크/언어 베스트프랙티스 준수
+   - 프로젝트별 코드 컨벤션 및 레포 규칙 준수 (CLAUDE.md 등)
    - 코드 복잡도 및 유지보수성
 
    제약:
